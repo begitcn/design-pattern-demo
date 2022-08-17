@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
 public class JerryDemoStrategyServiceImpl implements DemoStrategyService {
     @Override
     public String helloWorld() {
-        return "I'm Jerry";
+        return "Jerry";
     }
 }

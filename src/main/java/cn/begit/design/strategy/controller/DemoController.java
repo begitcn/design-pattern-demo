@@ -1,6 +1,6 @@
 package cn.begit.design.strategy.controller;
 
-import cn.begit.design.strategy.context.DemoStrategyContext;
+import cn.begit.design.strategy.context.DemoStrategyFactory;
 import cn.begit.design.strategy.service.DemoStrategyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     @Autowired
-    private DemoStrategyContext demoStrategyContext;
+    private DemoStrategyFactory strategyFactory;
 
     @GetMapping("/demo")
     public String demo(String name) {
-        DemoStrategyService service = demoStrategyContext.getResource(name);
+        DemoStrategyService service = strategyFactory.getResource(name);
         return service.helloWorld();
+    }
+
+    @GetMapping("/handle")
+    public String handle(String name) {
+        return strategyFactory.handle(name);
     }
 }
